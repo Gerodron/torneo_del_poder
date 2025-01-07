@@ -40,9 +40,6 @@ public class BusinessTorneo implements IBusinessTorneo {
         torneo.insertarNodo(nuevoNodo);
 
 
-        Catalogo_DAO catalogoDao = new Catalogo_DAO();
-        var rs = catalogoDao.getCatalogos("PARAMETROS_PRESENTACION");
-
     }
 
     /**
