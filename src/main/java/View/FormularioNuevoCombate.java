@@ -4,7 +4,7 @@
  */
 package View;
 import Controller.BusinessTorneo;
-import Model.Peleador.Peleador_BDO;
+import Model.Torneo.Competidor;
 import java.util.LinkedList;
 
 /**
@@ -14,20 +14,10 @@ import java.util.LinkedList;
 public class FormularioNuevoCombate extends javax.swing.JFrame {
     
     private BusinessTorneo _businessTorneo;
-    //private LinkedList<Peleador> _listaParticipantes;
-
-
-    /**
-     * Creates new form Presentacion
-     */
     
-    public FormularioNuevoCombate(LinkedList<Peleador_BDO> listaParticipantes) {
-        _businessTorneo = new BusinessTorneo(listaParticipantes);
-        initComponents();
-    }
     public FormularioNuevoCombate() {
+        _businessTorneo = new BusinessTorneo();
         initComponents();
-        //_businessTorneo = new BusinessTorneo(listaParticipantes);
     }
     
     /**
@@ -415,20 +405,26 @@ public class FormularioNuevoCombate extends javax.swing.JFrame {
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
         // TODO add your handling code here:
         //Peleador_1
-        String nombre_P1 = InputPersonaje1_Nombre.getText();
-        //String icono_P1 = InputPersonaje1_Icono.getText();
-        //int edad_P1 = Integer.parseInt(InputPersonaje1_Edad.getText());
-        //int poder_P1 = Integer.parseInt(InputPersonaje1_Poder.getText());
-        Peleador_BDO p1 = new Peleador_BDO(nombre_P1, 18, 1, "");
+        Competidor comp1 = new  Competidor();
+        comp1.setNombre(InputPersonaje1_Nombre.getText());
+        comp1.setIcono(InputPersonaje1_Icono.getText());
+        comp1.setPoder(InputPersonaje1_Poder.getText());
+        comp1.setEdad(InputPersonaje1_Edad.getText());
+        boolean comp1Success = _businessTorneo.agregarCompetidor(comp1);
         
         //Peleador_2
-        String nombre_P2 = InputPersonaje2_Nombre.getText();
-        //String icono_P2 = InputPersonaje2_Icono.getText();
-        //int poder_P2 = Integer.parseInt(InputPersonaje2_Poder.getText());
-        //int edad_P2 = Integer.parseInt(InputPersonaje1_Icono2.getText());
-        Peleador_BDO p2 = new Peleador_BDO(nombre_P2, 20, 2, "");
-        
-        _businessTorneo.agregaNuevoCombate(p1, p2);
+        Competidor comp2 = new  Competidor();
+        comp2.setNombre(InputPersonaje2_Nombre.getText());
+        comp2.setIcono(InputPersonaje2_Icono.getText());
+        comp2.setPoder(InputPersonaje2_Poder.getText());
+        comp2.setEdad(InputPersonaje1_Icono2.getText());
+        boolean comp2Success = _businessTorneo.agregarCompetidor(comp2);
+
+        if(comp1Success && comp2Success){
+            System.out.println("SE AGREGARON LOS PELEADORES EXITOSAMENTE");
+        }else{
+            System.out.println("UNO DE LOS PELEADORES NO SE AGREGO EXITOSAMENTE");
+        }
     }//GEN-LAST:event_botonGuardarActionPerformed
 
     private void botonCerrarVentanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarVentanaActionPerformed

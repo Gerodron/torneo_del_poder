@@ -5,6 +5,7 @@
 package View;
 import Controller.BusinessCatalogo;
 import Model.Catalogo.Catalogo_BDO;
+import Model.Tools.SessionHelper;
 
 import java.util.List;
 import java.util.Objects;
@@ -21,6 +22,8 @@ public class Presentacion extends javax.swing.JFrame {
      */
     private List<Catalogo_BDO> parametros;
     public Presentacion() {
+        SessionHelper.addSessionAUTH();
+        var result = SessionHelper.getSessionAUTH();
         initComponents();
     }
 

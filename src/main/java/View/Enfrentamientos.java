@@ -3,9 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package View;
-import Controller.BusinessTorneo;
 import Controller.IBusinessTorneo;
-import Model.Peleador.Peleador_BDO;
 import java.util.LinkedList;
 /**
  *
@@ -17,12 +15,9 @@ public class Enfrentamientos extends javax.swing.JFrame {
      * Creates new form Presentacion
      */
     private IBusinessTorneo  _businessTorneo;
-    private LinkedList<Peleador_BDO> _listaParticipantes = new LinkedList<>();
-  
+
     public Enfrentamientos() {
         initComponents();
-        _businessTorneo = new BusinessTorneo(_listaParticipantes);
-
     }
     
     /**
@@ -408,7 +403,7 @@ public class Enfrentamientos extends javax.swing.JFrame {
 
     private void BotonPostOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonPostOrdenActionPerformed
         // TODO add your handling code here:
-        _businessTorneo.obtenerCombates_PostOrden();
+
     }//GEN-LAST:event_BotonPostOrdenActionPerformed
 
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
@@ -420,7 +415,7 @@ public class Enfrentamientos extends javax.swing.JFrame {
         var coordenadas = this.getLocation();
         this.setVisible(false);
         
-        FormularioNuevoCombate formularioNuevoCombate = new FormularioNuevoCombate(_listaParticipantes);
+        FormularioNuevoCombate formularioNuevoCombate = new FormularioNuevoCombate();
         formularioNuevoCombate.setLocation(coordenadas);
         formularioNuevoCombate.setVisible(true);
         
@@ -448,12 +443,10 @@ public class Enfrentamientos extends javax.swing.JFrame {
 
     private void botonPreOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPreOrdenActionPerformed
         // TODO add your handling code here:
-        _businessTorneo.obtenerCombates_PreOrden();
     }//GEN-LAST:event_botonPreOrdenActionPerformed
 
     private void botonInOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInOrdenActionPerformed
         // TODO add your handling code here:
-        _businessTorneo.obtenerCombates_InOrden();
     }//GEN-LAST:event_botonInOrdenActionPerformed
 
     private void botonRegresarInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarInicioActionPerformed
