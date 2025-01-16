@@ -22,7 +22,7 @@ public class BusinessTorneo implements IBusinessTorneo {
 
     }
 
-    public void buscarCompetidor(String idCompetidor) {
+    public void buscarCompetidor() {
 
     }
 
