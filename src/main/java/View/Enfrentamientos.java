@@ -409,7 +409,10 @@ public class Enfrentamientos extends javax.swing.JFrame {
     private void BotonPostOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonPostOrdenActionPerformed
         // TODO add your handling code here:
         var result = _businessTorneo.recorrerArbol(TIPO_RECORRIDO_POST_ORDEN);
-
+        Notificacion notificacionView = new Notificacion();
+        notificacionView.setNotificacionMensaje(result);
+        notificacionView.setVisible(true);
+        notificacionView.setLocationRelativeTo(null);
     }//GEN-LAST:event_BotonPostOrdenActionPerformed
 
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
@@ -450,16 +453,23 @@ public class Enfrentamientos extends javax.swing.JFrame {
     private void botonPreOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPreOrdenActionPerformed
         // TODO add your handling code here:
         var result = _businessTorneo.recorrerArbol(TIPO_RECORRIDO_PRE_ORDEN);
+        String [] nombres = result.split(" ");
+        result = String.join(", ", nombres);
         Notificacion notificacionView = new Notificacion();
         notificacionView.setNotificacionMensaje(result);
         notificacionView.setVisible(true);
-
-        
+        notificacionView.setLocationRelativeTo(null);
     }//GEN-LAST:event_botonPreOrdenActionPerformed
 
     private void botonInOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInOrdenActionPerformed
         // TODO add your handling code here:
         var result = _businessTorneo.recorrerArbol(TIPO_RECORRIDO_IN_ORDEN);
+        String [] nombres = result.split(" ");
+        result = String.join(", ", nombres);
+        Notificacion notificacionView = new Notificacion();
+        notificacionView.setNotificacionMensaje(result);
+        notificacionView.setVisible(true);
+        notificacionView.setLocationRelativeTo(null);
     }//GEN-LAST:event_botonInOrdenActionPerformed
 
     private void botonRegresarInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarInicioActionPerformed
@@ -470,6 +480,7 @@ public class Enfrentamientos extends javax.swing.JFrame {
         Presentacion viewPresentacion = new Presentacion();
         viewPresentacion.setLocation(cordenadas);
         viewPresentacion.setVisible(true);
+        viewPresentacion.setLocationRelativeTo(null);
        
         
     }//GEN-LAST:event_botonRegresarInicioActionPerformed
