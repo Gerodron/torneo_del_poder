@@ -4,6 +4,8 @@ import Model.Tools.SessionHelper;
 import Model.Torneo.Competidor;
 import Model.Torneo.Nodo;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.Serializable;
 
 public class ArbolBinario_BDO implements Serializable {
@@ -116,5 +118,53 @@ public class ArbolBinario_BDO implements Serializable {
         postOrdenRec(nodo.getIzquierdo(), recorrido);
         postOrdenRec(nodo.getDerecho(), recorrido);
         recorrido.append(nodoCompetidor.getNombre()).append(" ");
+    }
+
+
+
+    // Método para dibujar el árbol con nodos personalizados
+    public void drawTree(Graphics g, Nodo nodo, int x, int y, int deltaX) {
+        if (nodo != null) {
+            Competidor nodoCompetidor = (Competidor) nodo.getValor();
+
+            // Cambiar color de los nodos
+            g.setColor(Color.WHITE); // Color del nodo (puedes cambiar a cualquier color)
+
+            // Cambiar forma del nodo: En este caso, un rectángulo
+            g.fillRect(x, y, 40, 40);  // Cambié de círculo a rectángulo (ancho, alto)
+            g.setColor(Color.BLACK); // Establecer color del texto
+            g.drawString(nodoCompetidor.getNombre(), x + 5, y + 25); // Mostrar el nombre del competidor
+
+            // Dibujar las líneas entre nodos y sus hijos
+            if (nodo.getIzquierdo() != null) {
+                g.setColor(Color.BLACK); // Color de las líneas
+                g.drawLine(x + 20, y + 40, x - deltaX + 20, y + 80); // Línea al hijo izquierdo
+                drawTree(g, nodo.getIzquierdo(), x - deltaX, y + 80, deltaX / 2);
+            }
+            if (nodo.getDerecho() != null) {
+                g.setColor(Color.BLACK); // Color de las líneas
+                g.drawLine(x + 20, y + 40, x + deltaX + 20, y + 80); // Línea al hijo derecho
+                drawTree(g, nodo.getDerecho(), x + deltaX, y + 80, deltaX / 2);
+            }
+        }
+    }
+
+
+    public class ArbolBinarioPanel extends JPanel {
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            // Llamar al método de dibujo con la raíz del árbol y valores de posición inicial
+            drawTree(g, raiz, 300, 50, 100);
+        }
+    }
+
+    public void mostrarArbol() {
+        JFrame frame = new JFrame("Árbol Binario");
+        ArbolBinarioPanel panel = new ArbolBinarioPanel();
+        frame.add(panel);
+        frame.setSize(600, 600);  // Tamaño de la ventana
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setVisible(true);
     }
 }

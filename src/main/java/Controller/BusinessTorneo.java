@@ -22,6 +22,7 @@ public class BusinessTorneo implements IBusinessTorneo {
     public boolean agregarCompetidor(Competidor competidor) {
         var result =  _arbolBinarioBDO.agregar(competidor);
         guardarArbol(_arbolBinarioBDO);
+        mostrarArbol();
         return  result;
     }
 
@@ -69,5 +70,9 @@ public class BusinessTorneo implements IBusinessTorneo {
 
     public void cargarArbol() {
 
+    }
+
+    public void mostrarArbol() {
+        this._arbolBinarioBDO.mostrarArbol();
     }
 }

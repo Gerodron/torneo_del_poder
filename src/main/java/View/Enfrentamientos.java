@@ -60,6 +60,7 @@ public class Enfrentamientos extends javax.swing.JFrame {
         botonInOrden = new javax.swing.JButton();
         botonEliminar1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        botonPreOrden2 = new javax.swing.JButton();
 
         Background1.setBackground(new java.awt.Color(255, 255, 255));
         Background1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -386,6 +387,20 @@ public class Enfrentamientos extends javax.swing.JFrame {
         jLabel3.setText("Cuadro de Enfrentamientos");
         Background.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 860, 80));
 
+        botonPreOrden2.setBackground(new java.awt.Color(51, 102, 255));
+        botonPreOrden2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        botonPreOrden2.setForeground(new java.awt.Color(255, 255, 255));
+        botonPreOrden2.setText("Graficar");
+        botonPreOrden2.setBorder(null);
+        botonPreOrden2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonPreOrden2.setFocusPainted(false);
+        botonPreOrden2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonPreOrden2ActionPerformed(evt);
+            }
+        });
+        Background.add(botonPreOrden2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 450, 100, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -409,6 +424,7 @@ public class Enfrentamientos extends javax.swing.JFrame {
     private void BotonPostOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonPostOrdenActionPerformed
         // TODO add your handling code here:
         var result = _businessTorneo.recorrerArbol(TIPO_RECORRIDO_POST_ORDEN);
+        result= "PostOrden: [ " + result +" ]";
         Notificacion notificacionView = new Notificacion();
         notificacionView.setNotificacionMensaje(result);
         notificacionView.setVisible(true);
@@ -427,6 +443,7 @@ public class Enfrentamientos extends javax.swing.JFrame {
         FormularioNuevoCombate formularioNuevoCombate = new FormularioNuevoCombate();
         formularioNuevoCombate.setLocation(coordenadas);
         formularioNuevoCombate.setVisible(true);
+        
         
     }//GEN-LAST:event_botonNuevoActionPerformed
 
@@ -451,10 +468,10 @@ public class Enfrentamientos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void botonPreOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPreOrdenActionPerformed
-        // TODO add your handling code here:
         var result = _businessTorneo.recorrerArbol(TIPO_RECORRIDO_PRE_ORDEN);
         String [] nombres = result.split(" ");
         result = String.join(", ", nombres);
+        result= "PreOrden: [ " + result +" ]";
         Notificacion notificacionView = new Notificacion();
         notificacionView.setNotificacionMensaje(result);
         notificacionView.setVisible(true);
@@ -466,6 +483,7 @@ public class Enfrentamientos extends javax.swing.JFrame {
         var result = _businessTorneo.recorrerArbol(TIPO_RECORRIDO_IN_ORDEN);
         String [] nombres = result.split(" ");
         result = String.join(", ", nombres);
+        result= "InOrden: [ " + result +" ]";
         Notificacion notificacionView = new Notificacion();
         notificacionView.setNotificacionMensaje(result);
         notificacionView.setVisible(true);
@@ -493,6 +511,11 @@ public class Enfrentamientos extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_botonCerrarVentanaActionPerformed
+
+    private void botonPreOrden2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPreOrden2ActionPerformed
+        // TODO add your handling code here:
+        _businessTorneo.mostrarArbol();
+    }//GEN-LAST:event_botonPreOrden2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -540,6 +563,7 @@ public class Enfrentamientos extends javax.swing.JFrame {
     private javax.swing.JButton botonInOrden;
     private javax.swing.JButton botonNuevo;
     private javax.swing.JButton botonPreOrden;
+    private javax.swing.JButton botonPreOrden2;
     private javax.swing.JButton botonRegresarInicio;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
