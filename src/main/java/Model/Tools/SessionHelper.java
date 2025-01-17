@@ -10,9 +10,12 @@ public class SessionHelper {
         sessionCache.put("USER_AUTH", Tool.generarIDUnico("USER_AUTH_UG" ));
     }
 
+    public static void addSessionAUTH(String sessionID) {
+        sessionCache.put("USER_AUTH", sessionID);
+    }
+
     public static String getSessionAUTH() {
-        //return sessionCache.get("USER_AUTH").toString();
-        return "c2fb298796238ad4";
+        return sessionCache.get("USER_AUTH").toString();
     }
 
     public static void addSessionHelper(String key, Object value) {

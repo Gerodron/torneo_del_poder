@@ -9,7 +9,7 @@ public interface IBusinessTorneo {
     boolean eliminarCompetidor(String idCompetidor);
     boolean modificarCompetidor(String idCompetidor, String nombre, String poder, String edad);
     void informacionArbol();
-    //void guardarArbol();
+    void guardarArbol();
     void cargarArbol();
 
 }

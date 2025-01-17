@@ -5,6 +5,7 @@
 package View;
 import Controller.BusinessTorneo;
 import Controller.IBusinessTorneo;
+import Model.Tools.SessionHelper;
 import java.util.LinkedList;
 /**
  *
@@ -52,7 +53,7 @@ public class Enfrentamientos extends javax.swing.JFrame {
         botonCerrarVentana = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        botonNuevo = new javax.swing.JButton();
+        botonGuardarArbol = new javax.swing.JButton();
         botonEditar = new javax.swing.JButton();
         BotonPostOrden = new javax.swing.JButton();
         botonPreOrden = new javax.swing.JButton();
@@ -62,6 +63,7 @@ public class Enfrentamientos extends javax.swing.JFrame {
         botonPreOrden2 = new javax.swing.JButton();
         InputEditarPersonaje_ID = new javax.swing.JTextField();
         InputEliminarPersonaje_ID = new javax.swing.JTextField();
+        botonNuevo1 = new javax.swing.JButton();
 
         Background1.setBackground(new java.awt.Color(255, 255, 255));
         Background1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -284,32 +286,37 @@ public class Enfrentamientos extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
+        botonGuardarArbol.setBackground(new java.awt.Color(51, 102, 255));
+        botonGuardarArbol.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        botonGuardarArbol.setForeground(new java.awt.Color(255, 255, 255));
+        botonGuardarArbol.setText("Guardar arbol");
+        botonGuardarArbol.setBorder(null);
+        botonGuardarArbol.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonGuardarArbol.setFocusPainted(false);
+        botonGuardarArbol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardarArbolActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(560, Short.MAX_VALUE)
+                .addComponent(botonGuardarArbol, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 280, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(244, Short.MAX_VALUE)
+                .addComponent(botonGuardarArbol, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         Background.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 720, 280));
-
-        botonNuevo.setBackground(new java.awt.Color(51, 102, 255));
-        botonNuevo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        botonNuevo.setForeground(new java.awt.Color(255, 255, 255));
-        botonNuevo.setText("Nuevo");
-        botonNuevo.setBorder(null);
-        botonNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonNuevo.setFocusPainted(false);
-        botonNuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonNuevoActionPerformed(evt);
-            }
-        });
-        Background.add(botonNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 410, 100, 30));
 
         botonEditar.setBackground(new java.awt.Color(51, 102, 255));
         botonEditar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -418,6 +425,20 @@ public class Enfrentamientos extends javax.swing.JFrame {
         });
         Background.add(InputEliminarPersonaje_ID, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 410, 170, 30));
 
+        botonNuevo1.setBackground(new java.awt.Color(51, 102, 255));
+        botonNuevo1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        botonNuevo1.setForeground(new java.awt.Color(255, 255, 255));
+        botonNuevo1.setText("Nuevo");
+        botonNuevo1.setBorder(null);
+        botonNuevo1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonNuevo1.setFocusPainted(false);
+        botonNuevo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonNuevo1ActionPerformed(evt);
+            }
+        });
+        Background.add(botonNuevo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 410, 100, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -460,17 +481,17 @@ public class Enfrentamientos extends javax.swing.JFrame {
         editarNodoView.setLocationRelativeTo(null);
     }//GEN-LAST:event_botonEditarActionPerformed
 
-    private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevoActionPerformed
-        // TODO add your handling code here:
-        var coordenadas = this.getLocation();
-        this.setVisible(false);
+    private void botonGuardarArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarArbolActionPerformed
+        _businessTorneo = new BusinessTorneo();
+        _businessTorneo.guardarArbol();
         
-        FormularioNuevoCombate formularioNuevoCombate = new FormularioNuevoCombate();
-        formularioNuevoCombate.setLocation(coordenadas);
-        formularioNuevoCombate.setVisible(true);
-        
-        
-    }//GEN-LAST:event_botonNuevoActionPerformed
+        String sessionId = SessionHelper.getSessionAUTH();
+        String mensaje = "Se guardo el arbol binario en ID_Session: " + sessionId;
+        Notificacion notificacionView = new Notificacion();
+        notificacionView.setNotificacionMensaje(mensaje);
+        notificacionView.setVisible(true);
+        notificacionView.setLocationRelativeTo(null);
+    }//GEN-LAST:event_botonGuardarArbolActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
@@ -560,6 +581,10 @@ public class Enfrentamientos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_InputEditarPersonaje_IDActionPerformed
 
+    private void botonNuevo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevo1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonNuevo1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -605,8 +630,9 @@ public class Enfrentamientos extends javax.swing.JFrame {
     private javax.swing.JButton botonCerrarVentana;
     private javax.swing.JButton botonEditar;
     private javax.swing.JButton botonEliminar1;
+    private javax.swing.JButton botonGuardarArbol;
     private javax.swing.JButton botonInOrden;
-    private javax.swing.JButton botonNuevo;
+    private javax.swing.JButton botonNuevo1;
     private javax.swing.JButton botonPreOrden;
     private javax.swing.JButton botonPreOrden2;
     private javax.swing.JButton botonRegresarInicio;

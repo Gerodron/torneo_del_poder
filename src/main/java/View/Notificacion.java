@@ -91,6 +91,7 @@ public class Notificacion extends javax.swing.JFrame {
         );
 
         mensajeModal.setText("TEXTO EJEMPLO");
+        mensajeModal.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

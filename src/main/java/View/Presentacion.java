@@ -22,8 +22,7 @@ public class Presentacion extends javax.swing.JFrame {
      */
     private List<Catalogo_BDO> parametros;
     public Presentacion() {
-        SessionHelper.addSessionAUTH();
-        var result = SessionHelper.getSessionAUTH();
+
         initComponents();
     }
 
@@ -39,7 +38,7 @@ public class Presentacion extends javax.swing.JFrame {
         Background = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         botonCerrarVentana = new javax.swing.JButton();
-        botonSiguiente = new javax.swing.JButton();
+        botonIniciarSession = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -53,6 +52,8 @@ public class Presentacion extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
+        botonSiguiente = new javax.swing.JButton();
+        inputSessionId_Login = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -97,20 +98,20 @@ public class Presentacion extends javax.swing.JFrame {
 
         Background.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 500));
 
-        botonSiguiente.setBackground(new java.awt.Color(51, 102, 255));
-        botonSiguiente.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        botonSiguiente.setForeground(new java.awt.Color(255, 255, 255));
-        botonSiguiente.setText("Siguiente");
-        botonSiguiente.setBorder(null);
-        botonSiguiente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonSiguiente.setFocusPainted(false);
-        botonSiguiente.setFocusable(false);
-        botonSiguiente.addActionListener(new java.awt.event.ActionListener() {
+        botonIniciarSession.setBackground(new java.awt.Color(51, 102, 255));
+        botonIniciarSession.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        botonIniciarSession.setForeground(new java.awt.Color(255, 255, 255));
+        botonIniciarSession.setText("Iniciar con SessionId");
+        botonIniciarSession.setBorder(null);
+        botonIniciarSession.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonIniciarSession.setFocusPainted(false);
+        botonIniciarSession.setFocusable(false);
+        botonIniciarSession.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonSiguienteActionPerformed(evt);
+                botonIniciarSessionActionPerformed(evt);
             }
         });
-        Background.add(botonSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 460, 100, 30));
+        Background.add(botonIniciarSession, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 460, 140, 30));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
@@ -191,6 +192,22 @@ public class Presentacion extends javax.swing.JFrame {
         jLabel15.setText("Lucas Nivicela Ignacio Jesús ");
         Background.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 230, 310, 30));
 
+        botonSiguiente.setBackground(new java.awt.Color(51, 102, 255));
+        botonSiguiente.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        botonSiguiente.setForeground(new java.awt.Color(255, 255, 255));
+        botonSiguiente.setText("Siguiente");
+        botonSiguiente.setBorder(null);
+        botonSiguiente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonSiguiente.setFocusPainted(false);
+        botonSiguiente.setFocusable(false);
+        botonSiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSiguienteActionPerformed(evt);
+            }
+        });
+        Background.add(botonSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 460, 100, 30));
+        Background.add(inputSessionId_Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 460, 210, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -207,22 +224,33 @@ public class Presentacion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSiguienteActionPerformed
-        // TODO add your handling code here:
+    private void botonIniciarSessionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIniciarSessionActionPerformed
+        String idSession = inputSessionId_Login.getText();
+        SessionHelper.addSessionAUTH(idSession);
+        
         var punto = this.getLocationOnScreen();
         this.setVisible(false);
         
         Enfrentamientos viewEnfrentamientos = new Enfrentamientos();
         viewEnfrentamientos.setLocation(punto);
         viewEnfrentamientos.setVisible(true);
-        
-        
-    }//GEN-LAST:event_botonSiguienteActionPerformed
+    }//GEN-LAST:event_botonIniciarSessionActionPerformed
 
     private void botonCerrarVentanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarVentanaActionPerformed
         // TODO add your handling code here:
          System.exit(0);
     }//GEN-LAST:event_botonCerrarVentanaActionPerformed
+
+    private void botonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSiguienteActionPerformed
+        SessionHelper.addSessionAUTH();
+        
+        var punto = this.getLocationOnScreen();
+        this.setVisible(false);
+        
+        Enfrentamientos viewEnfrentamientos = new Enfrentamientos();
+        viewEnfrentamientos.setLocation(punto);
+        viewEnfrentamientos.setVisible(true);
+    }//GEN-LAST:event_botonSiguienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -262,7 +290,9 @@ public class Presentacion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
     private javax.swing.JButton botonCerrarVentana;
+    private javax.swing.JButton botonIniciarSession;
     private javax.swing.JButton botonSiguiente;
+    private javax.swing.JTextField inputSessionId_Login;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

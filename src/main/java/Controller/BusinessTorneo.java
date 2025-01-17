@@ -81,6 +81,10 @@ public class BusinessTorneo implements IBusinessTorneo {
 
     }
 
+    public void guardarArbol(){
+        guardarArbol(_arbolBinarioBDO);
+    }
+
     public void guardarArbol(ArbolBinario_BDO arbolBinarioBDO) {
         ArbolBinario_DAO arbolBinario_DAO = new ArbolBinario_DAO();
         arbolBinario_DAO.guardarArbolBinario(arbolBinarioBDO, SessionHelper.getSessionAUTH());
