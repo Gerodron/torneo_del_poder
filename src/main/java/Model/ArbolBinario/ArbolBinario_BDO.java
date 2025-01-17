@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class ArbolBinario_BDO implements Serializable {
     Nodo raiz;
+    private int idx = 0;
 
     public Nodo getRaiz() {
         return raiz;
@@ -78,6 +79,88 @@ public class ArbolBinario_BDO implements Serializable {
             encontrado = buscarRec(nodo.getDerecho(), idCompentidor);
         }
         return encontrado;
+    }
+
+    public boolean eliminar(String idCompentidor) {
+        if (raiz == null) {
+            System.out.println("El árbol está vacío.");
+            return false;
+        }
+        Nodo nodoAEliminar = buscar(idCompentidor);
+        Competidor competidorEliminar = (Competidor) nodoAEliminar.getValor();
+        if (nodoAEliminar == null) {
+            System.out.println("Competidor no encontrado.");
+            return false;
+        }
+        Nodo ultimo = obtenerUltimoNodo();
+        Competidor competidorUltimo = (Competidor) ultimo.getValor();
+        if (ultimo == null || ultimo == nodoAEliminar) {
+            if (ultimo == raiz) {
+                raiz = null;
+            }
+            return false;
+        }
+        competidorEliminar.setIdCompetidor(competidorEliminar.getIdCompetidor());
+        competidorEliminar.setNombre(competidorEliminar.getNombre());
+        competidorEliminar.setEdad(competidorEliminar.getEdad());
+        competidorEliminar.setPoder(competidorEliminar.getPoder());
+        competidorEliminar.setPoder(competidorEliminar.getPoder());
+        eliminarUltimoNodo(ultimo);
+        return true;
+    }
+    private void eliminarUltimoNodo(Nodo ultimo) {
+        if (raiz == null) return;
+        if (raiz == ultimo && raiz.getIzquierdo() == null && raiz.getDerecho() == null) {
+            raiz = null;
+            return;
+        }
+        int altura = calcularAltura(raiz);
+        for (int nivel = 1; nivel <= altura; nivel++) {
+            Nodo[] arrayNivel = obtenerNodosDeNivel(raiz, nivel, 1);
+            for (Nodo n : arrayNivel) {
+                if (n == null) break;
+                if (n.getIzquierdo() == ultimo) {
+                    n.setIzquierdo(null);
+                    return;
+                }
+                if (n.getDerecho() == ultimo) {
+                    n.setDerecho(null);
+                    return;
+                }
+            }
+        }
+    }
+
+    private Nodo obtenerUltimoNodo() {
+        if (raiz == null) return null;
+        int altura = calcularAltura(raiz);
+        Nodo ultimo = null;
+        for (int nivel = 1; nivel <= altura; nivel++) {
+            Nodo[] arrayNivel = obtenerNodosDeNivel(raiz, nivel, 1);
+            for (Nodo n : arrayNivel) {
+                if (n != null) {
+                    ultimo = n;
+                }
+            }
+        }
+        return ultimo;
+    }
+    private Nodo[] obtenerNodosDeNivel(Nodo actual, int targetLevel, int currentLevel) {
+        Nodo[] nivel = new Nodo[100];
+        idx = 0;
+        llenarNivel(actual, targetLevel, currentLevel, nivel);
+        return nivel;
+    }
+    private void llenarNivel(Nodo actual, int targetLevel, int currentLevel, Nodo[] nivel) {
+        if (actual == null) {
+            return;
+        }
+        if (currentLevel == targetLevel) {
+            nivel[idx++] = actual;
+            return;
+        }
+        llenarNivel(actual.getIzquierdo(), targetLevel, currentLevel + 1, nivel);
+        llenarNivel(actual.getDerecho(), targetLevel, currentLevel + 1, nivel);
     }
 
     public String obtenerPreOrden() {

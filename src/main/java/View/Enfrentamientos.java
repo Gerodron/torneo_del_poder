@@ -531,6 +531,14 @@ public class Enfrentamientos extends javax.swing.JFrame {
 
     private void botonEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminar1ActionPerformed
         // TODO add your handling code here:
+        _businessTorneo = new BusinessTorneo();
+        String idCompetidor = InputEliminarPersonaje_ID.getText();
+        var result =  _businessTorneo.eliminarCompetidor(idCompetidor);
+        if(!result){
+            System.out.println("ERROR AL ELIMINAR PELEADOR CON ID" + idCompetidor);
+        }else{
+            System.out.println("SE ELIMINO PELEADOR CON ID" + idCompetidor);
+        }
     }//GEN-LAST:event_botonEliminar1ActionPerformed
 
     private void botonCerrarVentanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarVentanaActionPerformed

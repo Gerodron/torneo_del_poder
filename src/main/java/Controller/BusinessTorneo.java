@@ -46,8 +46,14 @@ public class BusinessTorneo implements IBusinessTorneo {
         return  result;
     }
 
-    public void eliminarCompetidor() {
-
+    public boolean eliminarCompetidor(String idCompetidor) {
+        var result =  _arbolBinarioBDO.eliminar(idCompetidor);
+        if(result == true) {
+            guardarArbol(_arbolBinarioBDO);
+            return true;
+        }else {
+            return false;
+        }
     }
 
     public boolean modificarCompetidor(String idCompetidor, String nombre, String poder, String edad) {

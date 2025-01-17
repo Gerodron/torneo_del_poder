@@ -12,7 +12,7 @@ public class SessionHelper {
 
     public static String getSessionAUTH() {
         //return sessionCache.get("USER_AUTH").toString();
-        return "e06d7a4c1606f1aa";
+        return "c2fb298796238ad4";
     }
 
     public static void addSessionHelper(String key, Object value) {

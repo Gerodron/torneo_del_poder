@@ -35,10 +35,6 @@ public class Presentacion extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        BusinessCatalogo businessCatalogo = new BusinessCatalogo();
-        this.parametros = businessCatalogo.getCatalogos("PARAMETROS_PRESENTACION");
-
-
 
         Background = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -56,6 +52,7 @@ public class Presentacion extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -89,13 +86,13 @@ public class Presentacion extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(botonCerrarVentana, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 100, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(botonCerrarVentana, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 460, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         Background.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 500));
@@ -119,17 +116,14 @@ public class Presentacion extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 102, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Optional<Catalogo_BDO> resultCatalogoOPT = parametros.stream().filter(element -> Objects.equals(element.getCodigo(), "01")).findFirst();
-        Catalogo_BDO resultCatalogo = resultCatalogoOPT.get();
-
-        jLabel1.setText(resultCatalogo.getComplemento());
+        jLabel1.setText("Universidad de Guayaquil");
         Background.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 860, 80));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel4.setText("Lucas Nivicela Ignacio Jesús ");
-        Background.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 230, 310, 30));
+        jLabel4.setText("Anthony Gabriel Muñoz Moran");
+        Background.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 260, 310, 30));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
@@ -146,9 +140,7 @@ public class Presentacion extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        resultCatalogoOPT = parametros.stream().filter(element -> Objects.equals(element.getCodigo(), "04")).findFirst();
-        resultCatalogo = resultCatalogoOPT.get();
-        jLabel7.setText(resultCatalogo.getComplemento());
+        jLabel7.setText("SOF-S-NO-3-3 ");
         Background.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, 310, 30));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -166,17 +158,13 @@ public class Presentacion extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(102, 102, 102));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        resultCatalogoOPT = parametros.stream().filter(element -> Objects.equals(element.getCodigo(), "03")).findFirst();
-        resultCatalogo = resultCatalogoOPT.get();
-        jLabel11.setText(resultCatalogo.getComplemento());
+        jLabel11.setText("Torneo del Poder");
         Background.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 300, 310, 30));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(102, 102, 102));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        resultCatalogoOPT = parametros.stream().filter(element -> Objects.equals(element.getCodigo(), "05")).findFirst();
-        resultCatalogo = resultCatalogoOPT.get();
-        jLabel9.setText(resultCatalogo.getComplemento());
+        jLabel9.setText("Ciencias Matemáticas y Físicas ");
         Background.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 310, 30));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -197,6 +185,12 @@ public class Presentacion extends javax.swing.JFrame {
         jLabel14.setText("Ruiz Fariño Eliana Valeria ");
         Background.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 200, 310, 30));
 
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel15.setText("Lucas Nivicela Ignacio Jesús ");
+        Background.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 230, 310, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -209,8 +203,6 @@ public class Presentacion extends javax.swing.JFrame {
                 .addComponent(Background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-
-
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -277,6 +269,7 @@ public class Presentacion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
