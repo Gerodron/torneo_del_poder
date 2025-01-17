@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package View;
+import Controller.BusinessTorneo;
 import Controller.IBusinessTorneo;
 import java.util.LinkedList;
 /**
@@ -14,10 +15,14 @@ public class Enfrentamientos extends javax.swing.JFrame {
     /**
      * Creates new form Presentacion
      */
-    private IBusinessTorneo  _businessTorneo;
+    private BusinessTorneo  _businessTorneo;
+    private final int TIPO_RECORRIDO_PRE_ORDEN = 1;
+    private final int TIPO_RECORRIDO_IN_ORDEN = 2;
+    private final int TIPO_RECORRIDO_POST_ORDEN = 3;
 
     public Enfrentamientos() {
         initComponents();
+        _businessTorneo = new BusinessTorneo();
     }
     
     /**
@@ -403,6 +408,7 @@ public class Enfrentamientos extends javax.swing.JFrame {
 
     private void BotonPostOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonPostOrdenActionPerformed
         // TODO add your handling code here:
+        var result = _businessTorneo.recorrerArbol(TIPO_RECORRIDO_POST_ORDEN);
 
     }//GEN-LAST:event_BotonPostOrdenActionPerformed
 
@@ -443,10 +449,17 @@ public class Enfrentamientos extends javax.swing.JFrame {
 
     private void botonPreOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPreOrdenActionPerformed
         // TODO add your handling code here:
+        var result = _businessTorneo.recorrerArbol(TIPO_RECORRIDO_PRE_ORDEN);
+        Notificacion notificacionView = new Notificacion();
+        notificacionView.setNotificacionMensaje(result);
+        notificacionView.setVisible(true);
+
+        
     }//GEN-LAST:event_botonPreOrdenActionPerformed
 
     private void botonInOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInOrdenActionPerformed
         // TODO add your handling code here:
+        var result = _businessTorneo.recorrerArbol(TIPO_RECORRIDO_IN_ORDEN);
     }//GEN-LAST:event_botonInOrdenActionPerformed
 
     private void botonRegresarInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarInicioActionPerformed

@@ -1,11 +1,17 @@
 package Model.ArbolBinario;
 
+import Model.Tools.SessionHelper;
+import Model.Torneo.Competidor;
 import Model.Torneo.Nodo;
 
 import java.io.Serializable;
 
 public class ArbolBinario_BDO implements Serializable {
     Nodo raiz;
+
+    public Nodo getRaiz() {
+        return raiz;
+    }
 
     public boolean agregar(Object dato) {
         Nodo nuevo = new Nodo(dato);
@@ -52,5 +58,63 @@ public class ArbolBinario_BDO implements Serializable {
         if (insertadoIzq) return true;
         boolean insertadoDer = insertarEnNivel(actual.getDerecho(), nuevo, targetLevel, currentLevel + 1);
         return insertadoDer;
+    }
+
+    public Nodo buscar(String idCompentidor) {
+        return buscarRec(raiz, idCompentidor);
+    }
+
+    public Nodo buscarRec(Nodo nodo, String idCompentidor) {
+        if (nodo == null) return null;
+        Competidor nodoCompetidor = (Competidor) nodo.getValor();
+        if (nodoCompetidor.getIdCompetidor().equals(idCompentidor)) {
+            return nodo;
+        }
+        Nodo encontrado = buscarRec(nodo.getIzquierdo(), idCompentidor);
+        if (encontrado == null) {
+            encontrado = buscarRec(nodo.getDerecho(), idCompentidor);
+        }
+        return encontrado;
+    }
+
+    public String obtenerPreOrden() {
+        StringBuilder recorrido = new StringBuilder();
+        preOrdenRec(raiz, recorrido);
+        return recorrido.toString().trim();
+    }
+    private void preOrdenRec(Nodo nodo, StringBuilder recorrido) {
+        if (nodo == null) return;
+        Competidor nodoCompetidor = (Competidor) nodo.getValor();
+        recorrido.append(nodoCompetidor.getNombre()).append(" ");
+        preOrdenRec(nodo.getIzquierdo(), recorrido);
+        preOrdenRec(nodo.getDerecho(), recorrido);
+    }
+
+    public String obtenerInOrden() {
+        StringBuilder recorrido = new StringBuilder();
+        inOrdenRec(raiz, recorrido);
+        return recorrido.toString().trim();
+    }
+
+    private void inOrdenRec(Nodo nodo, StringBuilder recorrido) {
+        if (nodo == null) return;
+        inOrdenRec(nodo.getIzquierdo(), recorrido);
+        Competidor nodoCompetidor = (Competidor)nodo.getValor();
+        recorrido.append(nodoCompetidor.getNombre()).append(" ");
+        inOrdenRec(nodo.getDerecho(), recorrido);
+    }
+
+    public String obtenerPostOrden() {
+        StringBuilder recorrido = new StringBuilder();
+        postOrdenRec(raiz, recorrido);
+        return recorrido.toString().trim();
+    }
+
+    private void postOrdenRec(Nodo nodo, StringBuilder recorrido) {
+        if (nodo == null) return;
+        Competidor nodoCompetidor = (Competidor) nodo.getValor();
+        postOrdenRec(nodo.getIzquierdo(), recorrido);
+        postOrdenRec(nodo.getDerecho(), recorrido);
+        recorrido.append(nodoCompetidor.getNombre()).append(" ");
     }
 }

@@ -7,9 +7,16 @@ import Model.Torneo.Competidor;
 
 public class BusinessTorneo implements IBusinessTorneo {
     private ArbolBinario_BDO _arbolBinarioBDO;
+    private ArbolBinario_DAO _arbolBinarioDAO;
 
     public BusinessTorneo(){
         _arbolBinarioBDO = new ArbolBinario_BDO();
+        _arbolBinarioDAO = new ArbolBinario_DAO();
+        if(_arbolBinarioBDO.getRaiz() == null) {
+            if(_arbolBinarioDAO.buscarArbolBinario(SessionHelper.getSessionAUTH()) != null) {
+             _arbolBinarioBDO = _arbolBinarioDAO.buscarArbolBinario(SessionHelper.getSessionAUTH());
+            }
+        };
     }
 
     public boolean agregarCompetidor(Competidor competidor) {
@@ -18,8 +25,20 @@ public class BusinessTorneo implements IBusinessTorneo {
         return  result;
     }
 
-    public void recorrerArbol() {
-
+    public String recorrerArbol(int tipoOperacion) {
+        var result = "";
+        switch (tipoOperacion){
+            case 1:
+                result = _arbolBinarioBDO.obtenerPreOrden();
+                break;
+            case 2:
+                result = _arbolBinarioBDO.obtenerInOrden();
+                break;
+            case 3:
+                result = _arbolBinarioBDO.obtenerPostOrden();
+                break;
+        }
+        return result;
     }
 
     public void buscarCompetidor() {

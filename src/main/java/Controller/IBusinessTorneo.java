@@ -4,7 +4,7 @@ import Model.Torneo.Competidor;
 
 public interface IBusinessTorneo {
     boolean agregarCompetidor(Competidor competidor);
-    void recorrerArbol();
+    String recorrerArbol(int tipoOperacion);
     void buscarCompetidor();
     void eliminarCompetidor();
     void modificarCompetidor();
