@@ -410,6 +410,7 @@ public class FormularioNuevoCombate extends javax.swing.JFrame {
         comp1.setIcono(InputPersonaje1_Icono.getText());
         comp1.setPoder(InputPersonaje1_Poder.getText());
         comp1.setEdad(InputPersonaje1_Edad.getText());
+        comp1.setIdCompetidor();
         boolean comp1Success = _businessTorneo.agregarCompetidor(comp1);
         
         //Peleador_2
@@ -418,6 +419,7 @@ public class FormularioNuevoCombate extends javax.swing.JFrame {
         comp2.setIcono(InputPersonaje2_Icono.getText());
         comp2.setPoder(InputPersonaje2_Poder.getText());
         comp2.setEdad(InputPersonaje1_Icono2.getText());
+        comp2.setIdCompetidor();
         boolean comp2Success = _businessTorneo.agregarCompetidor(comp2);
 
         if(comp1Success && comp2Success){
@@ -429,7 +431,7 @@ public class FormularioNuevoCombate extends javax.swing.JFrame {
 
     private void botonCerrarVentanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarVentanaActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+         System.exit(0);
     }//GEN-LAST:event_botonCerrarVentanaActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed

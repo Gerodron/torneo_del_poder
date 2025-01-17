@@ -7,6 +7,7 @@ import Model.Torneo.Nodo;
 import javax.swing.*;
 import java.awt.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class ArbolBinario_BDO implements Serializable {
     Nodo raiz;
@@ -125,26 +126,78 @@ public class ArbolBinario_BDO implements Serializable {
     // Método para dibujar el árbol con nodos personalizados
     public void drawTree(Graphics g, Nodo nodo, int x, int y, int deltaX) {
         if (nodo != null) {
+            Graphics2D g2 = (Graphics2D) g;
+
+            // Habilitar anti-aliasing para mejor calidad gráfica
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
             Competidor nodoCompetidor = (Competidor) nodo.getValor();
 
-            // Cambiar color de los nodos
-            g.setColor(Color.WHITE); // Color del nodo (puedes cambiar a cualquier color)
+            // Preparar el texto para mostrar más información
+            ArrayList<Object> lineasTexto = new ArrayList<>();
+            lineasTexto.add("ID: " + nodoCompetidor.getIdCompetidor());
+            lineasTexto.add("Nombre: " + nodoCompetidor.getNombre());
+            // Puedes agregar más información aquí, por ejemplo:
+            // lineasTexto.add("ID: " + nodoCompetidor.getIdCompetidor());
+            // lineasTexto.add("Otra Info: " + nodoCompetidor.getOtraInfo());
 
-            // Cambiar forma del nodo: En este caso, un rectángulo
-            g.fillRect(x, y, 40, 40);  // Cambié de círculo a rectángulo (ancho, alto)
-            g.setColor(Color.BLACK); // Establecer color del texto
-            g.drawString(nodoCompetidor.getNombre(), x + 5, y + 25); // Mostrar el nombre del competidor
+            // Calcular el tamaño del texto
+            FontMetrics fm = g2.getFontMetrics();
+            int anchoMaximo = 0;
+            for (Object linea : lineasTexto) {
+                int anchoLinea = fm.stringWidth(linea.toString());
+                if (anchoLinea > anchoMaximo) {
+                    anchoMaximo = anchoLinea;
+                }
+            }
+            int alturaTexto = fm.getHeight() * lineasTexto.size();
 
-            // Dibujar las líneas entre nodos y sus hijos
+            // Margen interno
+            int margen = 10;
+
+            // Tamaño del nodo
+            int anchoNodo = anchoMaximo + margen * 2;
+            int altoNodo = alturaTexto + margen * 2;
+
+            // Dibujar el rectángulo del nodo
+            g2.setColor(Color.WHITE); // Color del nodo
+            g2.fillRect(x, y, anchoNodo, altoNodo);
+            g2.setColor(Color.BLACK); // Borde del nodo
+            g2.drawRect(x, y, anchoNodo, altoNodo);
+
+            // Dibujar el texto dentro del nodo
+            int textoY = y + margen + fm.getAscent();
+            for (Object linea : lineasTexto) {
+                g2.drawString(linea.toString(), x + margen, textoY);
+                textoY += fm.getHeight();
+            }
+
+            // Dibujar las líneas hacia los hijos
             if (nodo.getIzquierdo() != null) {
-                g.setColor(Color.BLACK); // Color de las líneas
-                g.drawLine(x + 20, y + 40, x - deltaX + 20, y + 80); // Línea al hijo izquierdo
-                drawTree(g, nodo.getIzquierdo(), x - deltaX, y + 80, deltaX / 2);
+                g2.setColor(Color.BLACK);
+                // Calcular posiciones de conexión basadas en el tamaño del nodo
+                int xPadreCentro = x + anchoNodo / 2;
+                int yPadreFin = y + altoNodo;
+                int xHijo = x - deltaX;
+                int yHijoInicio = y + 80; // Ajusta según la distancia vertical entre niveles
+                int xHijoCentro = xHijo + anchoNodo / 2;
+                int yHijoFin = yHijoInicio;
+
+                g2.drawLine(xPadreCentro, yPadreFin, xHijoCentro, yHijoFin);
+                drawTree(g2, nodo.getIzquierdo(), x - deltaX, y + 80, deltaX / 2);
             }
             if (nodo.getDerecho() != null) {
-                g.setColor(Color.BLACK); // Color de las líneas
-                g.drawLine(x + 20, y + 40, x + deltaX + 20, y + 80); // Línea al hijo derecho
-                drawTree(g, nodo.getDerecho(), x + deltaX, y + 80, deltaX / 2);
+                g2.setColor(Color.BLACK);
+                // Calcular posiciones de conexión basadas en el tamaño del nodo
+                int xPadreCentro = x + anchoNodo / 2;
+                int yPadreFin = y + altoNodo;
+                int xHijo = x + deltaX;
+                int yHijoInicio = y + 80; // Ajusta según la distancia vertical entre niveles
+                int xHijoCentro = xHijo + anchoNodo / 2;
+                int yHijoFin = yHijoInicio;
+
+                g2.drawLine(xPadreCentro, yPadreFin, xHijoCentro, yHijoFin);
+                drawTree(g2, nodo.getDerecho(), x + deltaX, y + 80, deltaX / 2);
             }
         }
     }

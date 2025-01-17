@@ -50,6 +50,8 @@ public class Competidor implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+    public void setIdCompetidor() {
         this.idCompetidor = Tool.generarIDUnico(nombre);
     }
 

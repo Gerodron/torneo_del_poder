@@ -22,7 +22,6 @@ public class Enfrentamientos extends javax.swing.JFrame {
 
     public Enfrentamientos() {
         initComponents();
-        _businessTorneo = new BusinessTorneo();
     }
     
     /**
@@ -61,6 +60,8 @@ public class Enfrentamientos extends javax.swing.JFrame {
         botonEliminar1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         botonPreOrden2 = new javax.swing.JButton();
+        InputEditarPersonaje_ID = new javax.swing.JTextField();
+        InputEliminarPersonaje_ID = new javax.swing.JTextField();
 
         Background1.setBackground(new java.awt.Color(255, 255, 255));
         Background1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -308,7 +309,7 @@ public class Enfrentamientos extends javax.swing.JFrame {
                 botonNuevoActionPerformed(evt);
             }
         });
-        Background.add(botonNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 410, 100, 30));
+        Background.add(botonNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 410, 100, 30));
 
         botonEditar.setBackground(new java.awt.Color(51, 102, 255));
         botonEditar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -378,7 +379,7 @@ public class Enfrentamientos extends javax.swing.JFrame {
                 botonEliminar1ActionPerformed(evt);
             }
         });
-        Background.add(botonEliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 410, 100, 30));
+        Background.add(botonEliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 410, 100, 30));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
@@ -400,6 +401,22 @@ public class Enfrentamientos extends javax.swing.JFrame {
             }
         });
         Background.add(botonPreOrden2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 450, 100, 30));
+
+        InputEditarPersonaje_ID.setText("Ingresa ID");
+        InputEditarPersonaje_ID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InputEditarPersonaje_IDActionPerformed(evt);
+            }
+        });
+        Background.add(InputEditarPersonaje_ID, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 450, 170, 30));
+
+        InputEliminarPersonaje_ID.setText("Ingresa ID");
+        InputEliminarPersonaje_ID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InputEliminarPersonaje_IDActionPerformed(evt);
+            }
+        });
+        Background.add(InputEliminarPersonaje_ID, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 410, 170, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -423,6 +440,7 @@ public class Enfrentamientos extends javax.swing.JFrame {
 
     private void BotonPostOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonPostOrdenActionPerformed
         // TODO add your handling code here:
+        _businessTorneo = new BusinessTorneo();
         var result = _businessTorneo.recorrerArbol(TIPO_RECORRIDO_POST_ORDEN);
         result= "PostOrden: [ " + result +" ]";
         Notificacion notificacionView = new Notificacion();
@@ -433,6 +451,13 @@ public class Enfrentamientos extends javax.swing.JFrame {
 
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
         // TODO add your handling code here:
+        _businessTorneo = new BusinessTorneo();
+        var idPeleador = InputEditarPersonaje_ID.getText();
+        var peleador = _businessTorneo.buscarCompetidor(idPeleador);
+        EditarNodo editarNodoView = new EditarNodo();
+        editarNodoView.setFormulario(peleador.getIdCompetidor(), peleador.getNombre(), peleador.getPoder(), peleador.getEdad());
+        editarNodoView.setVisible(true);
+        editarNodoView.setLocationRelativeTo(null);
     }//GEN-LAST:event_botonEditarActionPerformed
 
     private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevoActionPerformed
@@ -468,6 +493,7 @@ public class Enfrentamientos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void botonPreOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPreOrdenActionPerformed
+        _businessTorneo = new BusinessTorneo();
         var result = _businessTorneo.recorrerArbol(TIPO_RECORRIDO_PRE_ORDEN);
         String [] nombres = result.split(" ");
         result = String.join(", ", nombres);
@@ -479,7 +505,7 @@ public class Enfrentamientos extends javax.swing.JFrame {
     }//GEN-LAST:event_botonPreOrdenActionPerformed
 
     private void botonInOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInOrdenActionPerformed
-        // TODO add your handling code here:
+        _businessTorneo = new BusinessTorneo();        
         var result = _businessTorneo.recorrerArbol(TIPO_RECORRIDO_IN_ORDEN);
         String [] nombres = result.split(" ");
         result = String.join(", ", nombres);
@@ -509,13 +535,22 @@ public class Enfrentamientos extends javax.swing.JFrame {
 
     private void botonCerrarVentanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarVentanaActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+         System.exit(0);
     }//GEN-LAST:event_botonCerrarVentanaActionPerformed
 
     private void botonPreOrden2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPreOrden2ActionPerformed
         // TODO add your handling code here:
+        _businessTorneo = new BusinessTorneo();                
         _businessTorneo.mostrarArbol();
     }//GEN-LAST:event_botonPreOrden2ActionPerformed
+
+    private void InputEliminarPersonaje_IDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputEliminarPersonaje_IDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputEliminarPersonaje_IDActionPerformed
+
+    private void InputEditarPersonaje_IDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputEditarPersonaje_IDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputEditarPersonaje_IDActionPerformed
 
     /**
      * @param args the command line arguments
@@ -557,6 +592,8 @@ public class Enfrentamientos extends javax.swing.JFrame {
     private javax.swing.JPanel Background;
     private javax.swing.JPanel Background1;
     private javax.swing.JButton BotonPostOrden;
+    private javax.swing.JTextField InputEditarPersonaje_ID;
+    private javax.swing.JTextField InputEliminarPersonaje_ID;
     private javax.swing.JButton botonCerrarVentana;
     private javax.swing.JButton botonEditar;
     private javax.swing.JButton botonEliminar1;

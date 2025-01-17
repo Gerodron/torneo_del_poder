@@ -229,7 +229,7 @@ public class Presentacion extends javax.swing.JFrame {
 
     private void botonCerrarVentanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarVentanaActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+         System.exit(0);
     }//GEN-LAST:event_botonCerrarVentanaActionPerformed
 
     /**

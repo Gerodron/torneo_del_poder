@@ -22,7 +22,6 @@ public class BusinessTorneo implements IBusinessTorneo {
     public boolean agregarCompetidor(Competidor competidor) {
         var result =  _arbolBinarioBDO.agregar(competidor);
         guardarArbol(_arbolBinarioBDO);
-        mostrarArbol();
         return  result;
     }
 
@@ -42,17 +41,35 @@ public class BusinessTorneo implements IBusinessTorneo {
         return result;
     }
 
-    public void buscarCompetidor() {
-
+    public Competidor buscarCompetidor(String idCompetidor) {
+        var result = (Competidor) _arbolBinarioBDO.buscar(idCompetidor).getValor();
+        return  result;
     }
 
     public void eliminarCompetidor() {
 
     }
 
-    public void modificarCompetidor() {
+    public boolean modificarCompetidor(String idCompetidor, String nombre, String poder, String edad) {
+        Competidor competidor = buscarCompetidor(idCompetidor);
 
+        if (competidor == null) {
+            return false;
+        }
+
+        competidor.setNombre(nombre);
+        competidor.setPoder(poder);
+        competidor.setEdad(edad);
+
+        try {
+            guardarArbol(_arbolBinarioBDO);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
+
 
     public void informacionArbol() {
 
